@@ -27,12 +27,12 @@ const main = async () => {
   console.log("Balance of owner before withdrawal:", hre.ethers.utils.formatEther(ownerBalance));
 
   // Oops, looks like the owner is saving their money!
-  txn = await domainContract.connect(superCoder).withdraw();
+  txn = await domainContract.connect(owner).withdraw();
   await txn.wait();
   
   // Fetch balance of contract & owner
   const contractBalance = await hre.ethers.provider.getBalance(domainContract.address);
-  ownerBalance = await hre.ethers.provider.getBalance(superCoder.address);
+  ownerBalance = await hre.ethers.provider.getBalance(owner.address);
 
   console.log("Contract balance after withdrawal:", hre.ethers.utils.formatEther(contractBalance));
   console.log("Balance of owner after withdrawal:", hre.ethers.utils.formatEther(ownerBalance));
